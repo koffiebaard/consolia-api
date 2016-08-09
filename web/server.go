@@ -18,8 +18,12 @@ func NewServer (conf utils.Config, db *gorm.DB) *negroni.Negroni {
 	REST := utils.GetSomeRest(renderer)
 
 	// Comic
-	comicController := controllers.NewComicController(conf, renderer, db, REST)
-	comicController.Register(router)
+    comicController := controllers.NewComicController(conf, renderer, db, REST)
+    comicController.Register(router)
+
+    // Comic history
+	comicHistoryController := controllers.NewComicHistoryController(conf, renderer, db, REST)
+	comicHistoryController.Register(router)
 
 	// Auth
 	authController := controllers.NewAuthController(conf, renderer, db, REST)

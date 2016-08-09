@@ -27,10 +27,16 @@ func NewEtcController(conf utils.Config, renderer *render.Render, db *gorm.DB, R
 
 func (cc *EtcController) Register(router *mux.Router) {
 
-	router.HandleFunc("/", cc.home).Methods("GET")
+    router.HandleFunc("/", cc.home).Methods("GET")
+	router.HandleFunc("/health", cc.health).Methods("GET")
 }
 
 func (cc *EtcController) home (w http.ResponseWriter, r *http.Request) {
 
 	cc.REST.OK(w, "Good day, dear sir.")
+}
+
+func (cc *EtcController) health (w http.ResponseWriter, r *http.Request) {
+
+    cc.REST.OK(w, "OK")
 }

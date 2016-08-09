@@ -30,7 +30,7 @@ func NewAuthController(conf utils.Config, renderer *render.Render, db *gorm.DB, 
 
 func (cc *AuthController) Register(router *mux.Router) {
 
-	router.HandleFunc("/token/", cc.token).Methods("POST")
+	router.HandleFunc("/token", cc.token).Methods("POST")
 }
 
 func (cc *AuthController) token (w http.ResponseWriter, r *http.Request) {

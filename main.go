@@ -14,14 +14,15 @@ func main() {
 		Env: 		os.Getenv("consolia_env"),
 		DBHost: 	os.Getenv("consolia_db_host"),
 		DBPort: 	os.Getenv("consolia_db_port"),
-		DBUsername: 	os.Getenv("consolia_db_username"),
-		DBPassword: 	os.Getenv("consolia_db_password"),
+		DBUsername: os.Getenv("consolia_db_username"),
+		DBPassword: os.Getenv("consolia_db_password"),
 		DBName: 	os.Getenv("consolia_db_name"),
 		Port: 		os.Getenv("consolia_port"),
 	}
 
 	db, err := gorm.Open("mysql", conf.DBUsername + ":" + conf.DBPassword + "@tcp(" + conf.DBHost + ":" + conf.DBPort + ")/" + conf.DBName + "?charset=utf8&parseTime=True")
-	if err != nil {
+
+    if err != nil {
 		fmt.Printf("Got error when connecting to the database: '%v'", err)
 	}
 

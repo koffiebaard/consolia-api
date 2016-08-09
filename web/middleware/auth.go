@@ -2,10 +2,12 @@ package middleware
 
 import (
 	"github.com/RangelReale/osin"
-	"github.com/wisc/osin-mysql"
+    "github.com/wisc/osin-mysql"
+    "consolia-api/utils"
 	"net/http"
 	"github.com/jinzhu/gorm"
 	_"fmt"
+    "gopkg.in/unrolled/render.v1"
 )
 
 
@@ -15,7 +17,7 @@ type AuthMiddleware struct {
 
 func (am *AuthMiddleware) ServeHTTP(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 
-	if r.RequestURI[0:len("/token")] != "/token" {
+	if r.RequestURI != "/token" {
 		auth := osin.CheckBearerAuth(r)
 
 		if auth != nil {
@@ -23,12 +25,15 @@ func (am *AuthMiddleware) ServeHTTP(rw http.ResponseWriter, r *http.Request, nex
 			store := mysql.New(am.DB.DB())
 			_, err := store.LoadAccess(token)
 
+            renderer := render.New()
+            REST := utils.GetSomeRest(renderer)
+
 			if err != nil {
-				http.Error(rw, "Supplied access token is invalid", 401)
-				return
-			}
-		} else {
-			http.Error(rw, "No access token supplied", 401)
+                REST.Unauthorized(rw, "Supplied access token is invalid")
+                return
+            }
+        } else {
+            REST.Unauthorized(rw, "No access token supplied")
 			return
 		}
 	}
