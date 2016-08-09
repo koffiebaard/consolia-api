@@ -25,14 +25,17 @@ func (am *AuthMiddleware) ServeHTTP(rw http.ResponseWriter, r *http.Request, nex
 			store := mysql.New(am.DB.DB())
 			_, err := store.LoadAccess(token)
 
-            renderer := render.New()
-            REST := utils.GetSomeRest(renderer)
+            if err != nil {
+                renderer := render.New()
+                REST := utils.GetSomeRest(renderer)
 
-			if err != nil {
                 REST.Unauthorized(rw, "Supplied access token is invalid")
                 return
             }
         } else {
+            renderer := render.New()
+            REST := utils.GetSomeRest(renderer)
+
             REST.Unauthorized(rw, "No access token supplied")
 			return
 		}
