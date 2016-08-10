@@ -28,8 +28,11 @@ export consolia_env=dev
 ```console
 $ bin/migrate.go up
 ```
-xx
-3) The tool uses `godep` to manage the dependencies. Install it: `go get github.com/tools/godep`
+
+3) The tool uses `godep` to manage the dependencies. Install it:
+```console
+$ go get github.com/tools/godep`
+```
 
 4) Build the API:
 ```console
