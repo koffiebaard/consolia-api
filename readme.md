@@ -26,7 +26,7 @@ export consolia_env=dev
 2) Provision the DB. Run the migrations:
 
 ```console
-$ bin/migrate.go up
+$ make migrate_up
 ```
 
 3) The tool uses `godep` to manage the dependencies. Install it:
@@ -36,12 +36,12 @@ $ go get github.com/tools/godep
 
 4) Build the API:
 ```console
-$ godep go build
+$ make build
 ```
 
 5) Run:
 ```console
-$ ./consolia-api
+$ make run
 ```
 
 

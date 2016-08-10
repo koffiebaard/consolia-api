@@ -13,6 +13,12 @@ testschemas:
 	# kill the server
 	ps aux | grep "consolia-api test" | awk '{print $$2}' | xargs kill
 
+migrate_up:
+	go run migrations/migrate.go up
+
+migrate_down:
+	go run migrations/migrate.go down
+
 build:
 	# save dependencies
 	godep save
