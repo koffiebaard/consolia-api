@@ -1,0 +1,175 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "title": {
+        "type": "string"
+      },
+      "slug": {
+        "type": "string"
+      },
+      "image": {
+        "type": "string"
+      },
+      "tooltip": {
+        "type": "string"
+      },
+      "reddit_upvotes": {
+        "type": "integer"
+      },
+      "yesterday_reddit_upvotes": {
+        "type": "integer"
+      },
+      "reddit_change": {
+        "type": "integer"
+      },
+      "nine_gag_upvotes": {
+        "type": "integer"
+      },
+      "yesterday_nine_gag_upvotes": {
+        "type": "integer"
+      },
+      "nine_gag_change": {
+        "type": "integer"
+      },
+      "cheez_upvotes": {
+        "type": "integer"
+      },
+      "yesterday_cheez_upvotes": {
+        "type": "integer"
+      },
+      "cheez_change": {
+        "type": "integer"
+      },
+      "facebook_likes": {
+        "type": "integer"
+      },
+      "yesterday_facebook_likes": {
+        "type": "integer"
+      },
+      "facebook_change": {
+        "type": "integer"
+      },
+      "tumblr_notes": {
+        "type": "integer"
+      },
+      "yesterday_tumblr_notes": {
+        "type": "integer"
+      },
+      "tumblr_change": {
+        "type": "integer"
+      },
+      "twitter_shits": {
+        "type": "integer"
+      },
+      "yesterday_twitter_shits": {
+        "type": "integer"
+      },
+      "twitter_change": {
+        "type": "integer"
+      },
+      "reddit_metrics_updated_on": {
+        "type": "string"
+      },
+      "yesterday_reddit_metrics_updated_on": {
+        "type": "string"
+      },
+      "nine_gag_metrics_updated_on": {
+        "type": "string"
+      },
+      "yesterday_nine_gag_metrics_updated_on": {
+        "type": "string"
+      },
+      "cheez_metrics_updated_on": {
+        "type": "string"
+      },
+      "yesterday_cheez_metrics_updated_on": {
+        "type": "string"
+      },
+      "facebook_metrics_updated_on": {
+        "type": "string"
+      },
+      "yesterday_facebook_metrics_updated_on": {
+        "type": "string"
+      },
+      "tumblr_metrics_updated_on": {
+        "type": "string"
+      },
+      "yesterday_tumblr_metrics_updated_on": {
+        "type": "string"
+      },
+      "twitter_metrics_updated_on": {
+        "type": "string"
+      },
+      "yesterday_twitter_metrics_updated_on": {
+        "type": "string"
+      },
+      "reddit": {
+        "type": "integer"
+      },
+      "cheezburger": {
+        "type": "integer"
+      },
+      "nine_gag": {
+        "type": "integer"
+      },
+      "facebook": {
+        "type": "integer"
+      },
+      "tumblr": {
+        "type": "integer"
+      },
+      "twitter": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "id",
+      "title",
+      "slug",
+      "image",
+      "tooltip",
+      "reddit_upvotes",
+      "yesterday_reddit_upvotes",
+      "reddit_change",
+      "nine_gag_upvotes",
+      "yesterday_nine_gag_upvotes",
+      "nine_gag_change",
+      "cheez_upvotes",
+      "yesterday_cheez_upvotes",
+      "cheez_change",
+      "facebook_likes",
+      "yesterday_facebook_likes",
+      "facebook_change",
+      "tumblr_notes",
+      "yesterday_tumblr_notes",
+      "tumblr_change",
+      "twitter_shits",
+      "yesterday_twitter_shits",
+      "twitter_change",
+      "reddit_metrics_updated_on",
+      "yesterday_reddit_metrics_updated_on",
+      "nine_gag_metrics_updated_on",
+      "yesterday_nine_gag_metrics_updated_on",
+      "cheez_metrics_updated_on",
+      "yesterday_cheez_metrics_updated_on",
+      "facebook_metrics_updated_on",
+      "yesterday_facebook_metrics_updated_on",
+      "tumblr_metrics_updated_on",
+      "yesterday_tumblr_metrics_updated_on",
+      "twitter_metrics_updated_on",
+      "yesterday_twitter_metrics_updated_on",
+      "reddit",
+      "cheezburger",
+      "nine_gag",
+      "facebook",
+      "tumblr",
+      "twitter"
+    ]
+  }
+}

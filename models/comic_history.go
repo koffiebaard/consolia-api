@@ -1,6 +1,7 @@
 package models
 
 import (
+    "time"
     "github.com/jinzhu/gorm"
 )
 
@@ -17,9 +18,9 @@ type Trending struct {
     RedditUpvotes                       int `gorm:"reddit_upvotes" json:"reddit_upvotes"`
     YesterdayRedditUpvotes              int `gorm:"yesterday_reddit_upvotes" json:"yesterday_reddit_upvotes"`
     RedditChange                        int `gorm:"reddit_change" json:"reddit_change"`
-    NineGagUpvotes                      int `gorm:"9gag_upvotes" json:"9gag_upvotes"`
-    Yesterday9gagUpvotes                int `gorm:"yesterday_9gag_upvotes" json:"yesterday_9gag_upvotes"`
-    NineGagChange                       int `gorm:"9gag_change" json:"9gag_change"`
+    NineGagUpvotes                      int `gorm:"nine_gag_upvotes" json:"nine_gag_upvotes"`
+    YesterdayNineGagUpvotes             int `gorm:"yesterday_nine_gag_upvotes" json:"yesterday_nine_gag_upvotes"`
+    NineGagChange                       int `gorm:"nine_gag_change" json:"nine_gag_change"`
     CheezUpvotes                        int `gorm:"cheez_upvotes" json:"cheez_upvotes"`
     YesterdayCheezUpvotes               int `gorm:"yesterday_cheez_upvotes" json:"yesterday_cheez_upvotes"`
     CheezChange                         int `gorm:"cheez_change" json:"cheez_change"`
@@ -32,21 +33,21 @@ type Trending struct {
     TwitterShits                        int `gorm:"twitter_shits" json:"twitter_shits"`
     YesterdayTwitterShits               int `gorm:"yesterday_twitter_shits" json:"yesterday_twitter_shits"`
     TwitterChange                       int `gorm:"twitter_change" json:"twitter_change"`
-    RedditMetricsUpdatedOn              int `gorm:"reddit_metrics_updated_on" json:"reddit_metrics_updated_on"`
-    YesterdayRedditMetricsUpdatedOn     int `gorm:"yesterday_reddit_metrics_updated_on" json:"yesterday_reddit_metrics_updated_on"`
-    NineGagMetricsUpdatedOn             int `gorm:"9gag_metrics_updated_on" json:"9gag_metrics_updated_on"`
-    YesterdayNineGagMetricsUpdatedOn    int `gorm:"yesterday_9gag_metrics_updated_on" json:"yesterday_9gag_metrics_updated_on"`
-    CheezMetricsUpdatedOn               int `gorm:"cheez_metrics_updated_on" json:"cheez_metrics_updated_on"`
-    YesterdayCheezMetricsUpdatedOn      int `gorm:"yesterday_cheez_metrics_updated_on" json:"yesterday_cheez_metrics_updated_on"`
-    FacebookMetricsUpdatedOn            int `gorm:"facebook_metrics_updated_on" json:"facebook_metrics_updated_on"`
-    YesterdayFacebookMetricsUpdatedOn   int `gorm:"yesterday_facebook_metrics_updated_on" json:"yesterday_facebook_metrics_updated_on"`
-    TumblrMetricsUpdatedOn              int `gorm:"tumblr_metrics_updated_on" json:"tumblr_metrics_updated_on"`
-    YesterdayTumblrMetricsUpdatedOn     int `gorm:"yesterday_tumblr_metrics_updated_on" json:"yesterday_tumblr_metrics_updated_on"`
-    TwitterMetricsUpdatedOn             int `gorm:"twitter_metrics_updated_on" json:"twitter_metrics_updated_on"`
-    YesterdayTwitterMetricsUpdatedOn    int `gorm:"yesterday_twitter_metrics_updated_on" json:"yesterday_twitter_metrics_updated_on"`
+    RedditMetricsUpdatedOn              time.Time `gorm:"reddit_metrics_updated_on" json:"reddit_metrics_updated_on"`
+    YesterdayRedditMetricsUpdatedOn     time.Time `gorm:"yesterday_reddit_metrics_updated_on" json:"yesterday_reddit_metrics_updated_on"`
+    NineGagMetricsUpdatedOn             time.Time `gorm:"nine_gag_metrics_updated_on" json:"nine_gag_metrics_updated_on"`
+    YesterdayNineGagMetricsUpdatedOn    time.Time `gorm:"yesterday_nine_gag_metrics_updated_on" json:"yesterday_nine_gag_metrics_updated_on"`
+    CheezMetricsUpdatedOn               time.Time `gorm:"cheez_metrics_updated_on" json:"cheez_metrics_updated_on"`
+    YesterdayCheezMetricsUpdatedOn      time.Time `gorm:"yesterday_cheez_metrics_updated_on" json:"yesterday_cheez_metrics_updated_on"`
+    FacebookMetricsUpdatedOn            time.Time `gorm:"facebook_metrics_updated_on" json:"facebook_metrics_updated_on"`
+    YesterdayFacebookMetricsUpdatedOn   time.Time `gorm:"yesterday_facebook_metrics_updated_on" json:"yesterday_facebook_metrics_updated_on"`
+    TumblrMetricsUpdatedOn              time.Time `gorm:"tumblr_metrics_updated_on" json:"tumblr_metrics_updated_on"`
+    YesterdayTumblrMetricsUpdatedOn     time.Time `gorm:"yesterday_tumblr_metrics_updated_on" json:"yesterday_tumblr_metrics_updated_on"`
+    TwitterMetricsUpdatedOn             time.Time `gorm:"twitter_metrics_updated_on" json:"twitter_metrics_updated_on"`
+    YesterdayTwitterMetricsUpdatedOn    time.Time `gorm:"yesterday_twitter_metrics_updated_on" json:"yesterday_twitter_metrics_updated_on"`
     Reddit                              int `gorm:"reddit" json:"reddit"`
     Cheezburger                         int `gorm:"cheezburger" json:"cheezburger"`
-    NineGag                             int `gorm:"9gag" json:"9gag"`
+    NineGag                             int `gorm:"nine_gag" json:"nine_gag"`
     Facebook                            int `gorm:"facebook" json:"facebook"`
     Tumblr                              int `gorm:"tumblr" json:"tumblr"`
     Twitter                             int `gorm:"twitte" json:"twitter"`
@@ -64,7 +65,7 @@ func (c *Comic) GetComicHistory (db gorm.DB) []ComicHistory {
     return comicHistories
 }
 
-func (c *Comic) GetTrending (db gorm.DB) []Trending {
+func (c *Comic) GetTrending (db *gorm.DB) []Trending {
 
     activities := []Trending{}
 
@@ -78,9 +79,9 @@ func (c *Comic) GetTrending (db gorm.DB) []Trending {
             C.reddit_upvotes,
             H.value as 'yesterday_reddit_upvotes',
             round((C.reddit_upvotes - H.value) / C.reddit_upvotes * 100, 0) as 'reddit_change',
-            C.9gag_upvotes,
-            HG.value as 'yesterday_9gag_upvotes',
-            round((C.9gag_upvotes - HG.value) / C.9gag_upvotes * 100, 0) as '9gag_change',
+            C.nine_gag_upvotes,
+            HG.value as 'yesterday_nine_gag_upvotes',
+            round((C.nine_gag_upvotes - HG.value) / C.nine_gag_upvotes * 100, 0) as 'nine_gag_change',
             C.cheez_upvotes,
             HC.value as 'yesterday_cheez_upvotes',
             round((C.cheez_upvotes - HC.value) / C.cheez_upvotes * 100, 0) as 'cheez_change',
@@ -96,8 +97,8 @@ func (c *Comic) GetTrending (db gorm.DB) []Trending {
             C.reddit_metrics_updated_on,
             C.reddit_metrics_updated_on,
             H.added as 'yesterday_reddit_metrics_updated_on',
-            C.9gag_metrics_updated_on,
-            HG.added as 'yesterday_9gag_metrics_updated_on',
+            C.nine_gag_metrics_updated_on,
+            HG.added as 'yesterday_nine_gag_metrics_updated_on',
             C.cheez_metrics_updated_on,
             HC.added as 'yesterday_cheez_metrics_updated_on',
             C.facebook_metrics_updated_on,
@@ -108,14 +109,14 @@ func (c *Comic) GetTrending (db gorm.DB) []Trending {
             HTW.added as 'yesterday_twitter_metrics_updated_on',
             C.reddit_metrics_updated_on > now() - interval 10 hour as reddit,
             C.cheez_metrics_updated_on > now() - interval 10 hour as cheezburger,
-            C.9gag_metrics_updated_on > now() - interval 10 hour as 9gag,
+            C.nine_gag_metrics_updated_on > now() - interval 10 hour as nine_gag,
             C.facebook_metrics_updated_on > now() - interval 10 hour as facebook,
             C.tumblr_metrics_updated_on > now() - interval 10 hour as tumblr,
             C.twitter_metrics_updated_on > now() - interval 10 hour as twitter
     FROM
             consolia.comics C
 left join (select * from (select * from consolia.history_of_things H where H.collection = 'reddit_upvotes' and H.added < now() - interval 24 hour order by H.added desc) ZZ group by ZZ.thing_id) H on (H.thing_id = C.id)
-    left join (select * from (select * from consolia.history_of_things H where H.collection = '9gag_upvotes' and H.added < now() - interval 24 hour order by H.added desc) ZZZ group by ZZZ.thing_id) HG on (HG.thing_id = C.id)
+    left join (select * from (select * from consolia.history_of_things H where H.collection = 'nine_gag_upvotes' and H.added < now() - interval 24 hour order by H.added desc) ZZZ group by ZZZ.thing_id) HG on (HG.thing_id = C.id)
     left join (select * from (select * from consolia.history_of_things H where H.collection = 'cheez_upvotes' and H.added < now() - interval 24 hour order by H.added desc) ZZZZ group by ZZZZ.thing_id) HC on (HC.thing_id = C.id)
     left join (select * from (select * from consolia.history_of_things H where H.collection = 'facebook_likes' and H.added < now() - interval 24 hour order by H.added desc) ZZZZZ group by ZZZZZ.thing_id) HF on (HF.thing_id = C.id)
     left join (select * from (select * from consolia.history_of_things H where H.collection = 'tumblr_notes' and H.added < now() - interval 24 hour order by H.added desc) ZZZZZZ group by ZZZZZZ.thing_id) HT on (HT.thing_id = C.id)
@@ -123,7 +124,7 @@ left join (select * from (select * from consolia.history_of_things H where H.col
     where
             C.reddit_metrics_updated_on > now() - interval 10 hour
     or
-            C.9gag_metrics_updated_on > now() - interval 10 hour
+            C.nine_gag_metrics_updated_on > now() - interval 10 hour
     or
             C.cheez_metrics_updated_on > now() - interval 10 hour
     or

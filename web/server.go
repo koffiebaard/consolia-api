@@ -9,6 +9,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	_"fmt"
+    "net/http"
 )
 
 func NewServer (conf utils.Config, db *gorm.DB) *negroni.Negroni {
@@ -33,10 +34,18 @@ func NewServer (conf utils.Config, db *gorm.DB) *negroni.Negroni {
 	etcController := controllers.NewEtcController(conf, renderer, db, REST)
 	etcController.Register(router)
 
+    router.NotFoundHandler = http.HandlerFunc(notFound)
 
-	n := negroni.Classic()
-	n.Use(&middleware.AuthMiddleware{DB: db})
-	n.UseHandler(router)
+    n := negroni.New()
+    n.Use(&middleware.AuthMiddleware{DB: db})
+    n.UseHandler(router)
 
 	return n
+}
+
+func notFound(rw http.ResponseWriter, r *http.Request) {
+
+    renderer := render.New()
+    REST := utils.GetSomeRest(renderer)
+    REST.NotFound(rw)
 }

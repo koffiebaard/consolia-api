@@ -48,36 +48,6 @@
 			"Rev": "3272df6c21d04180007eb3349844c89a3856bc25"
 		},
 		{
-			"ImportPath": "github.com/mattes/migrate/driver",
-			"Comment": "v1.2.0-70-gce1b59b",
-			"Rev": "ce1b59bb819416ca67422929b1cb48bb342720b6"
-		},
-		{
-			"ImportPath": "github.com/mattes/migrate/driver/mysql",
-			"Comment": "v1.2.0-70-gce1b59b",
-			"Rev": "ce1b59bb819416ca67422929b1cb48bb342720b6"
-		},
-		{
-			"ImportPath": "github.com/mattes/migrate/file",
-			"Comment": "v1.2.0-70-gce1b59b",
-			"Rev": "ce1b59bb819416ca67422929b1cb48bb342720b6"
-		},
-		{
-			"ImportPath": "github.com/mattes/migrate/migrate",
-			"Comment": "v1.2.0-70-gce1b59b",
-			"Rev": "ce1b59bb819416ca67422929b1cb48bb342720b6"
-		},
-		{
-			"ImportPath": "github.com/mattes/migrate/migrate/direction",
-			"Comment": "v1.2.0-70-gce1b59b",
-			"Rev": "ce1b59bb819416ca67422929b1cb48bb342720b6"
-		},
-		{
-			"ImportPath": "github.com/mattes/migrate/pipe",
-			"Comment": "v1.2.0-70-gce1b59b",
-			"Rev": "ce1b59bb819416ca67422929b1cb48bb342720b6"
-		},
-		{
 			"ImportPath": "github.com/oleiade/reflections",
 			"Comment": "0.1.2-2-g632977f",
 			"Rev": "632977f98cd34d217c4b57d0840ec188b3d3dcaf"

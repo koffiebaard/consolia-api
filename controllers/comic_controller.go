@@ -14,7 +14,7 @@ import (
 type ComicController struct {
 	conf utils.Config
 	renderer *render.Render
-	db gorm.DB
+	db *gorm.DB
 	REST *utils.Rest
 }
 
@@ -23,7 +23,7 @@ func NewComicController(conf utils.Config, renderer *render.Render, db *gorm.DB,
 	return &ComicController{
 		conf: conf,
 		renderer: renderer,
-		db: *db,
+		db: db,
 		REST: REST,
 	}
 }
@@ -99,12 +99,13 @@ func (cc *ComicController) PostComic (w http.ResponseWriter, r *http.Request) {
 	var newComic models.Comic
 	err := decoder.Decode(&newComic)
 	if err != nil {
-		cc.REST.InternalServerError(w, err.Error())
+		cc.REST.InternalServerError(w, "The request body is not formatted correctly. " + err.Error())
+        return
 	}
 
 	// Update the data
 	if err := cc.db.Model(&newComic).Save(&newComic).Error; err != nil {
-		cc.REST.InternalServerError(w, err.Error())
+		cc.REST.InternalServerError(w, "Validation error. " + err.Error())
 		return
 	}
 

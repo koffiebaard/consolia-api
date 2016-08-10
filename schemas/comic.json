@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "sublog": {
+      "type": "string"
+    },
+    "tooltip": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "thumbnail": {
+      "type": "string"
+    },
+    "comic_width": {
+      "type": "integer"
+    },
+    "comic_height": {
+      "type": "integer"
+    },
+    "post_on": {
+      "type": "string"
+    },
+    "posted_on": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "reddit_url": {
+      "type": "string"
+    },
+    "reddit_upvotes": {
+      "type": "integer"
+    },
+    "tumblr_url": {
+      "type": "string"
+    },
+    "tumblr_notes": {
+      "type": "integer"
+    },
+    "nine_gag_url": {
+      "type": "string"
+    },
+    "nine_gag_upvotes": {
+      "type": "integer"
+    },
+    "facebook_likes": {
+      "type": "integer"
+    },
+    "cheez_url": {
+      "type": "string"
+    },
+    "cheez_upvotes": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "slug",
+    "title",
+    "sublog",
+    "tooltip",
+    "image",
+    "thumbnail",
+    "comic_width",
+    "comic_height",
+    "post_on",
+    "posted_on",
+    "enabled",
+    "reddit_url",
+    "reddit_upvotes",
+    "tumblr_url",
+    "tumblr_notes",
+    "nine_gag_url",
+    "nine_gag_upvotes",
+    "facebook_likes",
+    "cheez_url",
+    "cheez_upvotes"
+  ]
+}

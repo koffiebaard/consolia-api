@@ -13,7 +13,7 @@ import (
 type ComicHistoryController struct {
     conf utils.Config
     renderer *render.Render
-    db gorm.DB
+    db *gorm.DB
     REST *utils.Rest
 }
 
@@ -22,7 +22,7 @@ func NewComicHistoryController(conf utils.Config, renderer *render.Render, db *g
     return &ComicHistoryController{
         conf: conf,
         renderer: renderer,
-        db: *db,
+        db: db,
         REST: REST,
     }
 }

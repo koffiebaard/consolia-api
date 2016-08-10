@@ -40,7 +40,7 @@ type AwesomeStats struct {
 }
 
 type Notification struct {
-    Text string             `json:"message"`
+    Message string             `json:"message"`
     visibility string       `json:"visibility"`
     Type string             `json:"type"`
 }
@@ -51,7 +51,7 @@ type ComicActivity struct {
 }
 
 // top 10 reddit, cheezburger & 9gag
-func (c *Comic) GetPopularSocialMedia (db gorm.DB) PopularComics {
+func (c *Comic) GetPopularSocialMedia (db *gorm.DB) PopularComics {
 
     comics := PopularComics{
         Reddit: []Comic{},
@@ -68,7 +68,7 @@ func (c *Comic) GetPopularSocialMedia (db gorm.DB) PopularComics {
 }
 
 // x days old, x upvotes, etc
-func (c *Comic) GetAwesomeStats (db gorm.DB) []AwesomeStats {
+func (c *Comic) GetAwesomeStats (db *gorm.DB) []AwesomeStats {
 
     awesomeStats := []AwesomeStats{}
 
@@ -96,7 +96,7 @@ func (c *Comic) GetAwesomeStats (db gorm.DB) []AwesomeStats {
 }
 
 
-func (c *Comic) GetUpcomingComic (db gorm.DB) Comic {
+func (c *Comic) GetUpcomingComic (db *gorm.DB) Comic {
 
     comic := Comic{}
 
@@ -116,7 +116,7 @@ func (c *Comic) GetUpcomingComic (db gorm.DB) Comic {
 }
 
 
-func (c *Comic) GetNotifications (db gorm.DB) []Notification {
+func (c *Comic) GetNotifications (db *gorm.DB) []Notification {
 
     notifications := []Notification{}
 
@@ -124,7 +124,7 @@ func (c *Comic) GetNotifications (db gorm.DB) []Notification {
             select * from (
                             (
                     SELECT
-                            concat("Current comic has the highest rating in ", datediff((select posted_on from consolia.comics where enabled = 1 order by id desc limit 1), posted_on), " days") as "text"
+                            concat("Current comic has the highest rating in ", datediff((select posted_on from consolia.comics where enabled = 1 order by id desc limit 1), posted_on), " days") as "message"
                             ,if (datediff((select posted_on from consolia.comics where enabled = 1 order by id desc limit 1), posted_on) > 13, 1, 0) as "visibility"
                             ,"info" as "type"
                     FROM
@@ -142,7 +142,7 @@ func (c *Comic) GetNotifications (db gorm.DB) []Notification {
             union all
             (
                     SELECT
-                             concat(count(*), " comic(s) have no dimensions specified") as "text"
+                             concat(count(*), " comic(s) have no dimensions specified") as "message"
                             ,if (count(*) > 0, 1, 0) as "visibility"
                             ,"alert" as "type"
                     FROM
@@ -158,7 +158,7 @@ func (c *Comic) GetNotifications (db gorm.DB) []Notification {
             union all
             (
                     SELECT
-                             concat(count(*), " comic(s) don't have a tumblr title set up") as "text"
+                             concat(count(*), " comic(s) don't have a tumblr title set up") as "message"
                             ,if (count(*) > 0, 1, 0) as "visibility"
                             ,"warning" as "type"
                     FROM
@@ -181,7 +181,7 @@ func (c *Comic) GetNotifications (db gorm.DB) []Notification {
     return notifications
 }
 
-func (c *Comic) GetPublishActivity (db gorm.DB) []ComicActivity {
+func (c *Comic) GetPublishActivity (db *gorm.DB) []ComicActivity {
 
     activities := []ComicActivity{}
 
