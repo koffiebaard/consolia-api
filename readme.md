@@ -1,6 +1,6 @@
 # Consolia API in Go w/ MySQL
 
-Back-office API for Consolia (a webcomic). Back-office, as in only used by the admin panel and not by the website itself.
+Back-office API for [Consolia](https://consolia-comic.com/), a webcomic. Back-office, as in only used by the admin panel and not by the website itself.
 
 It's a simple REST API written in Go, backed by MySQL. It primarily uses:
 
@@ -31,7 +31,7 @@ $ bin/migrate.go up
 
 3) The tool uses `godep` to manage the dependencies. Install it:
 ```console
-$ go get github.com/tools/godep`
+$ go get github.com/tools/godep
 ```
 
 4) Build the API:
