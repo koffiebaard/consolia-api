@@ -6,7 +6,11 @@ It's a simple REST API written in Go, backed by MySQL. It primarily uses:
 
 - [Negroni](https://github.com/urfave/negroni) - HTTP middleware
 - [Gorm](https://github.com/jinzhu/gorm) - ORM library
-- [Osin](github.com/RangelReale/osin) - Oauth2 server library
+- [Osin](https://github.com/RangelReale/osin) - Oauth2 server library
+- [Migrate](https://github.com/mattes/migrate/) - DB migrations
+- [Godep](https://github.com/tools/godep) - Dependency manager
+
+It is unit tested and can validate API output against the JSON schemas.
 
 
 ## Getting Started
@@ -39,7 +43,12 @@ $ go get github.com/tools/godep
 $ make build
 ```
 
-5) Run:
+5) Test:
+```console
+$ make test
+```
+
+6) Run:
 ```console
 $ make run
 ```
