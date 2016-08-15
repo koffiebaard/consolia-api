@@ -41,3 +41,16 @@ run:
 
 	# run
 	./consolia-api
+
+build_docker:
+	docker build -t "consolia-api" .
+
+run_docker:
+	docker rm -f consolia-api;
+
+	docker run  -e "consolia_db_port=$$consolia_db_port" \
+				-e "consolia_db_name=$$consolia_db_name" \
+				-e "consolia_db_username=$$consolia_db_username" \
+				-e "consolia_db_password=$$consolia_db_password" \
+				-e "consolia_env=$$consolia_env" \
+			   -d --name consolia-api -p 3000:3003 consolia-api

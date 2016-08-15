@@ -30,30 +30,30 @@ func NewAuthController(conf utils.Config, renderer *render.Render, db *gorm.DB, 
 
 func (cc *AuthController) Register(router *mux.Router) {
 
-	router.HandleFunc("/token", cc.token).Methods("POST")
+    router.HandleFunc("/token", cc.token).Methods("POST")
 }
 
 func (cc *AuthController) token (w http.ResponseWriter, r *http.Request) {
 
-	store := mysql.New(cc.db.DB())
-	config := osin.NewServerConfig()
-	config.AllowedAccessTypes = osin.AllowedAccessType{osin.PASSWORD, osin.CLIENT_CREDENTIALS}
-	config.ErrorStatusCode = 401
-	server := osin.NewServer(config, store)
+    store := mysql.New(cc.db.DB())
+    config := osin.NewServerConfig()
+    config.AllowedAccessTypes = osin.AllowedAccessType{osin.PASSWORD, osin.CLIENT_CREDENTIALS}
+    config.ErrorStatusCode = 401
+    server := osin.NewServer(config, store)
 
-	resp := server.NewResponse()
-	defer resp.Close()
+    resp := server.NewResponse()
+    defer resp.Close()
 
-	if ar := server.HandleAccessRequest(resp, r); ar != nil {
+    if ar := server.HandleAccessRequest(resp, r); ar != nil {
 
-		user := models.User{}
+        user := models.User{}
 
-		if user.Authenticate(cc.db, ar.Username, ar.Password) {
-			ar.Authorized = true
-		}
+        if user.Authenticate(cc.db, ar.Username, ar.Password) {
+            ar.Authorized = true
+        }
 
-		server.FinishAccessRequest(resp, r, ar)
-	}
+        server.FinishAccessRequest(resp, r, ar)
+    }
 
-	osin.OutputJSON(resp, w, r)
+    osin.OutputJSON(resp, w, r)
 }

@@ -40,7 +40,7 @@ type AwesomeStats struct {
 }
 
 type Notification struct {
-    Message string             `json:"message"`
+    Message string          `json:"message"`
     visibility string       `json:"visibility"`
     Type string             `json:"type"`
 }

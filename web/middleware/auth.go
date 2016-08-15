@@ -17,7 +17,16 @@ type AuthMiddleware struct {
 
 func (am *AuthMiddleware) ServeHTTP(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 
-	if r.RequestURI != "/token" {
+    // OPTIONS calls
+    if r.Method == "OPTIONS" {
+        renderer := render.New()
+        REST := utils.GetSomeRest(renderer)
+
+        REST.OK(rw, "OK")
+        return
+
+    // Validate on non-/token calls
+    } else if r.RequestURI != "/token" {
 		auth := osin.CheckBearerAuth(r)
 
 		if auth != nil {

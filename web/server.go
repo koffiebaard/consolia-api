@@ -37,6 +37,7 @@ func NewServer (conf utils.Config, db *gorm.DB) *negroni.Negroni {
     router.NotFoundHandler = http.HandlerFunc(notFound)
 
     n := negroni.New()
+    n.Use(&middleware.CorsMiddleware{DB: db})
     n.Use(&middleware.AuthMiddleware{DB: db})
     n.UseHandler(router)
 
