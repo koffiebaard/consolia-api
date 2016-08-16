@@ -8,7 +8,7 @@ testschemas:
 	export consolia_env=test; export consolia_port=9001; ./consolia-api test &
 
 	# run the json schema tests
-	export consolia_env=test; export consolia_port=9001; go run schemas/test_schemas.go ihqy1nguQm6IWM5P7rI59g
+	export consolia_env=test; export consolia_port=9001; go run schemas/test_schemas.go NhBEsuAFQe-9Ly_vRjAxQw
 
 	# kill the server
 	ps aux | grep "consolia-api test" | awk '{print $$2}' | xargs kill
